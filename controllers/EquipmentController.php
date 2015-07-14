@@ -263,12 +263,22 @@ class EquipmentController extends Controller {
 	}
 
 	public function actionListEquipName() {
+		echo json_encode(['data' => []]);
+		exit;
+
 		// used in auto complete cell 
 
 		// $equipment_names = Equipments::model()->findAll();
-		$equipment_names = \Yii::$app->db->createCommand('select distinct(name)  from equipments')->queryAll();
+		// $equipment_names = \Yii::$app->db->createCommand('select distinct(name)  from equipments')->queryAll();
+		$equipment_names = (new \yii\db\Query())
+		    ->select('distinct(name)')
+		    ->from('equipments')
+		    // ->where(['last_name' => 'Smith'])
+		    ->limit(100)            // may be paginate
+		    ->all();
 		// echo "<pre/>";
 		// print_r($equipment_names);
+
 		$equipment_names['result'] = 'ok';
 		if(count($equipment_names) > 0) {
 

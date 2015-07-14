@@ -13,7 +13,9 @@ use yii\helpers\Html;
   <script src="<?php echo \Yii::$app->request->baseUrl; ?>/js/dist/pikaday/pikaday.js"></script>
   <link rel="stylesheet" media="screen" href="<?php echo \Yii::$app->request->baseUrl; ?>/css/handsontable.full.min.css">
   <link rel="stylesheet" media="screen" href="<?php echo \Yii::$app->request->baseUrl; ?>/js/dist/pikaday/pikaday.css">
-  <title><?php echo Html::encode($this->pageTitle); ?></title>
+  <title><?php //echo Html::encode("Demo hansontable"); 
+  // die;
+  ?></title>
 
 
   <style>
@@ -52,12 +54,17 @@ use yii\helpers\Html;
   </div>
 </div>
 
+<?php 
+// echo \Yii::$app->request->baseUrl;
+// die('hard'); 
+?>
+
 <script type="text/javascript" charset="utf-8">
   var listEquipNames = ['Audi', 'BMW', 'Nissan', 'Opel', 'Suzuki', 'Toyota', 'Volvo', 'Kawasaki', 'Honda', 'Yamaha', 'Lifan', 'Chrysler', 'Citroen', 'Mercedes',];
 
   $.ajax({
     //url: 'php/cars.php', // commented out because our website is hosted on static GitHub Pages
-    url: "<?= \Yii::$app->request->baseUrl?>/product2/listEquipName",
+    url: "<?= \Yii::$app->request->baseUrl?>/equipment/listEquipName",
     dataType: 'json',
     data: {
       // query: query
@@ -73,6 +80,7 @@ use yii\helpers\Html;
         console.log("err", err);
     },
   });
+
 
 $(document).ready(function () {
 
@@ -171,7 +179,7 @@ hot = new Handsontable($container[0], {
       // source: function (process) { // query, 
       //   $.ajax({
       //     //url: 'php/cars.php', // commented out because our website is hosted on static GitHub Pages
-      //     url: "<?= \Yii::$app->request->baseUrl?>/product2/listEquipName",
+      //     url: "<?= \Yii::$app->request->baseUrl?>/equipment/listEquipName",
       //     dataType: 'json',
       //     data: {
       //       // query: query
@@ -256,7 +264,7 @@ hot = new Handsontable($container[0], {
 
     clearTimeout(autosaveNotification);
     $.ajax({
-      url: "<?= \Yii::$app->request->baseUrl?>/product2/update",
+      url: "<?= \Yii::$app->request->baseUrl?>/equipment/update",
       dataType: 'json',
       type: 'POST',
       data: {changes: change}, // contains changed cells' data
@@ -278,7 +286,7 @@ hot = new Handsontable($container[0], {
 
 $parent.find('button[name=load]').click(function () {
   $.ajax({
-    url: "<?= \Yii::$app->request->baseUrl?>/product2/load",
+    url: "<?= \Yii::$app->request->baseUrl?>/equipment/load",
     dataType: 'json',
     type: 'GET',
     success: function (res) {
@@ -293,7 +301,7 @@ $parent.find('button[name=load]').click(function () {
 
 $parent.find('button[name=save]').click(function () {
   $.ajax({
-    url: "<?= \Yii::$app->request->baseUrl?>/product2/save",
+    url: "<?= \Yii::$app->request->baseUrl?>/equipment/save",
     data: {data: hot.getData()}, // returns all cells' data
     dataType: 'json',
     type: 'POST',
