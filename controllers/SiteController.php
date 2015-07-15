@@ -93,4 +93,15 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionListEquipName() {
+        die('hard');
+        exit;
+    }
+
+    public function actionTestAbc() {
+
+        die('hard2');
+        exit;
+    }
 }

@@ -39,6 +39,12 @@ class EquipmentController extends Controller {
 
 	}
 
+	// Disable CSRF check to avoid Error 400
+	public function beforeAction($action) {
+	    $this->enableCsrfValidation = false;
+	    return parent::beforeAction($action);
+	}
+
 	public function actionIndex() {
 
 		// die('hard');
@@ -61,10 +67,13 @@ class EquipmentController extends Controller {
 
 	public function actionLoad() {
 
-		$response = [];
-		// $products = \Yii::$app->db->createCommand('select name, VN_price, produced_year, Manufacturer, Import_price, Note  from products')->queryAll();
+		$equipments = (new \yii\db\Query())
+		    ->select('*')
+		    ->from('equipments')
+		    // ->where(['last_name' => 'Smith'])
+		    ->limit(100)            // may be paginate
+		    ->all();
 		// TODO hide id from edit in view
-		$products = Equipments::all();
 		// $products = \Yii::$app->db->createCommand('select * from equipments')->queryAll();
 
 		// foreach($products as $product) {
@@ -73,7 +82,7 @@ class EquipmentController extends Controller {
 
 		// $response = array_values( (array)$response );
 		// echo "<pre/>";
-		echo json_encode(['data'=>$products]);
+		echo json_encode(['data'=>$equipments]);
 
 		// print_r($response);
 		// echo json_encode(['data' => $response]);
@@ -115,7 +124,6 @@ class EquipmentController extends Controller {
 	}
 
 	public function actionUpdate() {
-
 		// Change in only one cell of the sheet
 		// So only update one column.
 
@@ -233,6 +241,7 @@ class EquipmentController extends Controller {
 	/********************* Other demos *************************************/
 	public function actionValidationDemo() {
 
+		die('hard');
 		$this->render('validation', []);
 	}
 
@@ -262,9 +271,7 @@ class EquipmentController extends Controller {
 		exit;
 	}
 
-	public function actionListEquipName() {
-		echo json_encode(['data' => []]);
-		exit;
+	public function actionListequipname() {
 
 		// used in auto complete cell 
 

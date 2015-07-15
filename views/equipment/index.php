@@ -59,12 +59,12 @@ use yii\helpers\Html;
 // die('hard'); 
 ?>
 
-<script type="text/javascript" charset="utf-8">
-  var listEquipNames = ['Audi', 'BMW', 'Nissan', 'Opel', 'Suzuki', 'Toyota', 'Volvo', 'Kawasaki', 'Honda', 'Yamaha', 'Lifan', 'Chrysler', 'Citroen', 'Mercedes',];
+<script>
+var listEquipNames = ['Audi', 'BMW', 'Nissan', 'Opel', 'Suzuki', 'Toyota', 'Volvo', 'Kawasaki', 'Honda', 'Yamaha', 'Lifan', 'Chrysler', 'Citroen', 'Mercedes',];
 
   $.ajax({
     //url: 'php/cars.php', // commented out because our website is hosted on static GitHub Pages
-    url: "<?= \Yii::$app->request->baseUrl?>/equipment/listEquipName",
+    url: "<?= \Yii::$app->request->baseUrl?>/equipment/listequipname",
     dataType: 'json',
     data: {
       // query: query
@@ -81,25 +81,8 @@ use yii\helpers\Html;
     },
   });
 
-
 $(document).ready(function () {
-
-// $.ajax({
-//   url: "<?= \Yii::$app->request->baseUrl?>/product/load",
-//   dataType: 'json',
-//   type: 'GET',
-//   data: '', // 
-//   success: function (res) {
-//       console.log(res.data);
-
-//   },
-//   error: function(err) {
-//       console.log(err);
-//       alert(err);
-//   }
-// });
-
-var
+  var
   $container = $("#example1"),
   $console = $("#exampleConsole"),
   $parent = $container.parent(),
@@ -369,6 +352,8 @@ $parent.find('input[name=autosave]').click(function () {
  //    ]
  //  };
  //  var hot = new Handsontable(example1, settings1);
+
+
 </script>
 <br/>
 <br/>
@@ -388,5 +373,10 @@ Integration
 <br/>
 <br/>
 <br/>
+
+<?php 
+// die('hard'); 
+exit;
+?>
 </body>
 </html>

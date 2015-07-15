@@ -1,4 +1,6 @@
-<?php /* @var $this Controller */ ?>
+<?php /* @var $this Controller */ 
+exit;
+?>
 <!DOCTYPE html>
 <html>
 <head>
